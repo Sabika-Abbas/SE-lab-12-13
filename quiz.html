@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz Marks Validation</title>
+  <style>
+    body { font-family: Arial; max-width: 400px; margin: 50px auto; padding: 20px; }
+    input { padding: 8px; width: 100%; margin-bottom: 10px; }
+    button { padding: 10px 20px; background: #24292e; color: white; border: none; cursor: pointer; }
+    #result { margin-top: 15px; padding: 10px; font-weight: bold; }
+    .accepted { color: green; }
+    .rejected { color: red; }
+  </style>
+</head>
+<body>
+  <h2>Quiz Marks Validation</h2>
+  <p>Enter marks from 0 to 10 inclusive:</p>
+  <input id="marks" type="number" placeholder="Enter marks">
+  <button id="submit" onclick="validateMarks()">Submit</button>
+  <p id="result"></p>
+
+  <script>
+    function validateMarks() {
+      const raw = document.getElementById("marks").value;
+      const marks = Number(raw);
+      const result = document.getElementById("result");
+      result.className = "";
+
+      if (raw.trim() === "" || !Number.isInteger(marks)) {
+        result.textContent = "Rejected: enter an integer between 0 and 10 inclusive.";
+        result.className = "rejected";
+        return;
+      }
+
+      if (marks >= 0 && marks <= 10) {
+        result.textContent = "Accepted";
+        result.className = "accepted";
+      } else {
+        result.textContent = "Rejected: marks must be between 0 and 10 inclusive.";
+        result.className = "rejected";
+      }
+    }
+  </script>
+</body>
+</html>
